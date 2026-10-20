@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler
 
 from data_preparation import load_data, prepare_features
 
-DATA_PATH = "data/raw/churn.csv"
+DATA_PATH = "data/processed/churn_v1.csv"
 MODEL_PATH = "models/baseline_model.joblib"
 REPORT_PATH = "reports/baseline_metrics.json"
 
@@ -35,6 +35,7 @@ def main():
     probabilities = model.predict_proba(X_test)[:, 1]
 
     metrics = {
+        "data_version": "v1",
         "accuracy": accuracy_score(y_test, predictions),
         "precision": precision_score(y_test, predictions, zero_division=0),
         "recall": recall_score(y_test, predictions, zero_division=0),
